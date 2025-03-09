@@ -73,7 +73,8 @@ Functionality:
 5. The platform provides information on pet services like Pet Grooming, Veterinary Care, and Pet Caregiving, complete with descriptions and images.
 6. A "Book Now" button is available for services, although its functionality will be enhanced at a later stage.
 7. There is an About page and a Contact page, which allows users to submit feedback, although the submit functionality is planned for future implementation.
-8. The platform is designed to be mobile, tablet, and desktop-friendly for a seamless experience across devices.
+8. All users including users who haven't signed up can access public pages like the main, about, and contact pages, while the profile and dashboard (Information of pets for adoption and services) are restricted to signed-in users.
+9. The platform is designed to be mobile, tablet, and desktop-friendly for a seamless experience across devices.
 
 Testing Instructions
 1. Test the sign-up process by entering valid and invalid data in the required fields.
@@ -82,7 +83,9 @@ Testing Instructions
 4. Test the sign-in process using valid credentials to ensure that the user is authenticated.
 5. Test with invalid credentials to confirm that proper error messages are displayed.
 6. Ensure that once signed in, the user can sign out successfully by clicking the profile image and choosing sign-out from the menu.
-7. Test the profile update functionality by changing user information.
-8. Verify that changes are saved correctly and that the updated data is displayed upon login.
-9. Verify that users can browse the available pets for adoption and services with images and information.
-10. Test the platform on various devices (mobile, tablet, and desktop) to ensure the layout and content adapt properly to different screen sizes.
+7. Test the profile update functionality by changing user information and verify that changes are saved correctly and that the updated data is displayed upon login.
+8. Verify that users can browse the available pets for adoption and services with images and information.
+9. Test to ensure that all users including users who haven't signed up can access public pages (main, about, contact).
+10. Test to verify that only signed-in users can access the profile and dashboard (containing information about pets for adoption and services).
+11. Test to ensure that users who are not signed in but attempt to access the dashboard (containing information about pets for adoption and services) will be prompted to sign in and redirected to the sign-in page.
+12. Test the platform on various devices (mobile, tablet, and desktop) to ensure the layout and content adapt properly to different screen sizes.
