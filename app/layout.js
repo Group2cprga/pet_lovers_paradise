@@ -1,6 +1,6 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Header from "./component/Header"; 
+import Header from "./component/header"; 
 import NavBar from "./component/NavBar"; 
 import Footer from "./component/Footer"; 
 import { ClerkProvider } from "@clerk/nextjs"; 
