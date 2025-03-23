@@ -1,42 +1,53 @@
 "use client";
 
-import React from "react";
-import { useUser } from "@clerk/nextjs"; 
+import React, { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation"; 
 import Card from "./components/Card";
 import Button from "./components/Button";
 
 export default function Home() {
-  const { isSignedIn } = useUser(); 
+  const { isSignedIn } = useUser();
+  const router = useRouter(); 
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const handleButtonClick = () => {
     if (isSignedIn) {
-      window.location.href = "/dashboard"; 
+      router.push("/dashboard");
     } else {
       alert("Please sign in to view the adoption and services.");
-      window.location.href = "/sign-in"; 
+      router.push("/sign-in");
     }
   };
 
-  // Array of card data
   const petCards = [
     {
       imageSrc: "/assets/dog.jpg",
       altText: "A cute dog waiting for adoption",
       title: "Adopt a Loyal Dog",
-      description: "A loyal companion looking for a forever home"
+      description: "A loyal companion looking for a forever home",
     },
     {
       imageSrc: "/assets/cat.jpg",
       altText: "A fluffy cat ready to be adopted",
       title: "Find Your Purrfect Cat",
-      description: "A sweet and affectionate cat waiting for you"
+      description: "A sweet and affectionate cat waiting for you",
     },
     {
       imageSrc: "/assets/rabbit.jpg",
       altText: "A cute rabbit looking for a home",
       title: "Adopt a Lovable Rabbit",
-      description: "A cuddly rabbit in need of a loving family"
-    }
+      description: "A cuddly rabbit in need of a loving family",
+    },
   ];
 
   return (
@@ -54,7 +65,6 @@ export default function Home() {
       </section>
 
       <section className="grid gap-8 sm:grid-cols-3 mx-2 w-full justify-items-center">
-        {/* Loop over the petCards array */}
         {petCards.map((card, index) => (
           <Card
             key={index}
@@ -66,11 +76,10 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Dashboard Button */}
       <section className="mt-8">
         <Button
           text="Find Your Perfect Pet & Services"
-          onClick={handleButtonClick}  // Use onClick for the custom action
+          onClick={handleButtonClick}
         />
       </section>
     </div>
