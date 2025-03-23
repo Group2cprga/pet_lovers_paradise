@@ -2,13 +2,77 @@
 
 import React from "react";
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
-
+import Card from "../components/Card";
 
 const DashboardPage = () => {
   const { isSignedIn, user } = useUser();
 
   if (!isSignedIn) return <h1 className="text-2xl font-bold text-center">Loading...</h1>;
+
+  // Pet cards data
+  const petCards = [
+    {
+      imageSrc: "/assets/dog.jpg",
+      altText: "Max",
+      title: "Max",
+      description: "Loyal"
+    },
+    {
+      imageSrc: "/assets/dog2.jpg",
+      altText: "Bella",
+      title: "Bella",
+      description: "Playful"
+    },
+    {
+      imageSrc: "/assets/cat.jpg",
+      altText: "Oliver",
+      title: "Oliver",
+      description: "Curious"
+    },
+    {
+      imageSrc: "/assets/cat2.jpg",
+      altText: "Luna",
+      title: "Luna",
+      description: "Independent"
+    },
+    {
+      imageSrc: "/assets/rabbit.jpg",
+      altText: "Thumper",
+      title: "Thumper",
+      description: "Energetic"
+    },
+    {
+      imageSrc: "/assets/rabbit2.jpg",
+      altText: "Cinnamon",
+      title: "Cinnamon",
+      description: "Sweet"
+    }
+  ];
+
+  // Services data
+  const serviceCards = [
+    {
+      imageSrc: "/assets/grooming.jpg",
+      altText: "Pet Grooming",
+      title: "Pet Grooming",
+      description: "Honey's Pet Grooming",
+      buttonText: "Book Now"
+    },
+    {
+      imageSrc: "/assets/veterinary.jpg",
+      altText: "Veterinary Services",
+      title: "Veterinary Care",
+      description: "Trusted Veterinary Care",
+      buttonText: "Book Now"
+    },
+    {
+      imageSrc: "/assets/petcaregiver.jpg",
+      altText: "Pet Caregiver",
+      title: "Pet Caregiver",
+      description: "Loving Pet Caregiver",
+      buttonText: "Book Now"
+    }
+  ];
 
   return (
     <main className="flex flex-col items-center justify-center max-w-full py-8">
@@ -28,41 +92,16 @@ const DashboardPage = () => {
 
       {/* Pet Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4">
-        <section className="card">
-          <Image className="card-image" src="/assets/dog.jpg" width={440} height={327} alt="Max" />
-          <h2 className="card-title">Max</h2>
-          <p className="card-text">Loyal</p>
-        </section>
-
-        <section className="card">
-          <Image className="card-image" src="/assets/dog2.jpg" width={440} height={327} alt="Bella" />
-          <h2 className="card-title">Bella</h2>
-          <p className="card-text">Playful</p>
-        </section>
-
-        <section className="card">
-          <Image className="card-image" src="/assets/cat.jpg" width={440} height={327} alt="Oliver" />
-          <h2 className="card-title">Oliver</h2>
-          <p className="card-text">Curious</p>
-        </section>
-
-        <section className="card">
-          <Image className="card-image" src="/assets/cat2.jpg" width={440} height={327} alt="Luna" />
-          <h2 className="card-title">Luna</h2>
-          <p className="card-text">Independent</p>
-        </section>
-
-        <section className="card">
-          <Image className="card-image" src="/assets/rabbit.jpg" width={440} height={327} alt="Thumper" />
-          <h2 className="card-title">Thumper</h2>
-          <p className="card-text">Energetic</p>
-        </section>
-
-        <section className="card">
-          <Image className="card-image" src="/assets/rabbit2.jpg" width={440} height={327} alt="Cinnamon" />
-          <h2 className="card-title">Cinnamon</h2>
-          <p className="card-text">Sweet</p>
-        </section>
+        {/* Loop through the petCards array */}
+        {petCards.map((card, index) => (
+          <Card
+            key={index}
+            imageSrc={card.imageSrc}
+            altText={card.altText}
+            title={card.title}
+            description={card.description}
+          />
+        ))}
       </section>
 
       {/* Add space before Service Section */}
@@ -73,60 +112,19 @@ const DashboardPage = () => {
         <h3 className="text-xl font-semibold text-gray-800">Caring for Your Pet’s Health & Beauty</h3>
       </section>
 
+      {/* Service Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4">
-        {/* Pet Grooming Card */}
-        <section className="card bg-white p-4 rounded-xl shadow-lg">
-          <Image
-            className="card-image rounded-lg"
-            src="/assets/grooming.jpg"
-            width={440}
-            height={327}
-            alt="Pet Grooming"
+        {/* Loop through the serviceCards array */}
+        {serviceCards.map((service, index) => (
+          <Card
+            key={index}
+            imageSrc={service.imageSrc}
+            altText={service.altText}
+            title={service.title}
+            description={service.description}
+            buttonText={service.buttonText}
           />
-          <h2 className="card-title mt-2 text-center text-xl font-semibold text-gray-800">Pet Grooming</h2>
-          <p className="text-center">Honey's Pet Grooming</p>
-          <section className="text-center mt-4">
-            <button className="button">
-              Book Now
-            </button>
-          </section>
-        </section>
-
-        {/* Veterinary Card */}
-        <section className="card bg-white p-4 rounded-xl shadow-lg">
-          <Image
-            className="card-image rounded-lg"
-            src="/assets/veterinary.jpg"
-            width={440}
-            height={327}
-            alt="Veterinary Services"
-          />
-          <h2 className="card-title mt-2 text-center text-xl font-semibold text-gray-800">Veterinary Care</h2>
-          <p className="text-center">Trusted Veterinary Care</p>
-          <section className="text-center mt-4">
-            <button className="button">
-              Book Now
-            </button>
-          </section>
-        </section>
-
-        {/* Pet Caregiver Card */}
-        <section className="card bg-white p-4 rounded-xl shadow-lg">
-          <Image
-            className="card-image rounded-lg"
-            src="/assets/petcaregiver.jpg"
-            width={440}
-            height={327}
-            alt="Pet Caregiver"
-          />
-          <h2 className="card-title mt-2 text-center text-xl font-semibold text-gray-800">Pet Caregiver</h2>
-          <p className="text-center">Loving Pet Caregiver</p>
-          <section className="text-center mt-4">
-            <button className="button">
-              Book Now
-            </button>
-          </section>
-        </section>
+        ))}
       </section>
     </main>
   );
