@@ -1,8 +1,8 @@
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import Header from "./component/header"; 
-import NavBar from "./component/NavBar"; 
-import Footer from "./component/Footer"; 
+import "./globals.css"; 
+import Header from "./components/header"; 
+import NavBar from "./components/NavBar"; 
+import Footer from "./components/Footer"; 
 import { ClerkProvider } from "@clerk/nextjs"; 
 
 const roboto = Roboto({
@@ -14,7 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${roboto.className} flex flex-col min-h-screen m-0 p-0`}>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>
+        <body className={`${roboto.className} flex flex-col min-h-screen bg-white`}>
           <Header />
           <NavBar /> 
           <main className="flex-grow flex flex-col items-center justify-start w-full px-4 py-4">
