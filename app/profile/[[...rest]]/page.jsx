@@ -1,7 +1,6 @@
 "use client"; 
 
 import { UserProfile, useUser } from "@clerk/nextjs"; 
-import Footer from "../../component/Footer"; 
 
 const ProfilePage = () => {
   const { user, isLoaded, isSignedIn } = useUser(); 
