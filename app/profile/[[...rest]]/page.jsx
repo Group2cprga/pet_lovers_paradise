@@ -1,25 +1,23 @@
-"use client"; 
+"use client";  
 
-import { UserProfile, useUser } from "@clerk/nextjs"; 
+import { UserProfile, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";  
 
 const ProfilePage = () => {
-  const { user, isLoaded, isSignedIn } = useUser(); 
+  const { user, isLoaded, isSignedIn } = useUser();
+  const router = useRouter();  
 
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
 
   if (!isSignedIn) {
-    return (
-      <section className="flex justify-center items-center min-h-screen">
-        <p>You are not signed in. Please sign in to view your profile.</p>
-      </section>
-    );
+    router.push("/sign-in");  
+    return null;  
   }
 
   return (
     <>
-    
       <div className="flex justify-center items-center min-h-screen bg-teal-500 py-2 rounded-2xl">   
         <section className="bg-white rounded-2xl p-12 w-full max-w-5xl relative flex flex-col space-y-8 border-4 border-teal-500 shadow-lg">
           
