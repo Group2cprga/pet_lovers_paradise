@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Button from "../components/Button";  
 
-const Card = ({ imageSrc, altText, title, description, buttonText, onClick }) => {
+const Card = ({ imageSrc, altText, title, description, buttonText, link, onClick }) => {
   return (
     <section className="bg-white p-4 rounded-xl shadow-lg">
       <Image
-        className="rounded-lg"
+        className="rounded-lg object-cover"
         src={imageSrc}
         width={440}
         height={327}
@@ -15,12 +16,7 @@ const Card = ({ imageSrc, altText, title, description, buttonText, onClick }) =>
       <p className="text-center">{description}</p>
       {buttonText && (
         <section className="text-center mt-4">
-          <button
-            onClick={onClick}
-            className="px-8 py-4 bg-teal-600 text-white font-semibold rounded-lg transition transform hover:bg-teal-500 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-400"
-          >
-            {buttonText}
-          </button>
+          <Button text={buttonText} link={link} onClick={onClick} />
         </section>
       )}
     </section>

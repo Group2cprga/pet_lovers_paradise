@@ -1,42 +1,133 @@
 "use client";
-import Link from 'next/link';
-import { UserButton, useAuth } from '@clerk/nextjs';
+import { useState } from "react";
+import Link from "next/link";
+import { useAuth } from "@clerk/nextjs"; 
+import { Menu, X, Briefcase, Info, Mail, LogIn, UserPlus, User, Home } from "lucide-react";
 
 export default function NavBar() {
-  const { userId } = useAuth();
+  const { userId, signOut } = useAuth(); 
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="bg-teal-500 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <section className="container mx-auto flex justify-between items-center">
         
         <section className="flex items-center justify-between w-full sm:w-auto">
-          <section className="flex items-center justify-start space-x-4 sm:space-x-6 w-full">
-            <Link href="/" className="text-lg sm:text-xl">Home</Link>
-            <Link href="/about" className="text-lg sm:text-xl">About</Link>
-            <Link href="/contact" className="text-lg sm:text-xl">Contact</Link>
-          </section>
+          
+          <Link href="/" className="flex items-center text-lg sm:text-xl font-bold">
+            <Home size={18} className="mr-2" /> 
+            Home
+          </Link>
+
+          
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="sm:hidden ml-auto text-white"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </section>
 
-        <section className="flex items-center space-x-4 sm:space-x-6">
+        
+        <section className="hidden sm:flex items-center space-x-6">
+          <Link
+            href={userId ? "/dashboard" : "/sign-in"}
+            className="flex items-center text-lg hover:text-gray-300"
+          >
+            <Briefcase size={18} className="mr-2" />
+            Services
+          </Link>
+          <Link href="/about" className="flex items-center text-lg hover:text-gray-300">
+            <Info size={18} className="mr-2" />
+            About
+          </Link>
+          <Link href="/contact" className="flex items-center text-lg hover:text-gray-300">
+            <Mail size={18} className="mr-2" />
+            Contact
+          </Link>
+        </section>
+
+        
+        <section className="hidden sm:flex items-center space-x-6">
           {!userId ? (
             <>
-              <Link href="/sign-in" className="text-white text-sm sm:text-xl hover:text-gray-300">
+              <Link href="/sign-in" className="flex items-center text-lg hover:text-gray-300">
+                <LogIn size={18} className="mr-2" />
                 Sign in
               </Link>
-              <Link href="/sign-up" className="text-white text-sm sm:text-xl hover:text-gray-300">
+              <Link href="/sign-up" className="flex items-center text-lg hover:text-gray-300">
+                <UserPlus size={18} className="mr-2" />
                 Sign up
               </Link>
             </>
           ) : (
             <>
-              <Link href="/profile" className="text-white text-sm sm:text-xl hover:text-gray-300">
+              
+              <Link href="/profile" className="flex items-center text-lg hover:text-gray-300">
+                <User size={18} className="mr-2" />
                 Profile
               </Link>
-              <UserButton className="flex" afterSignOutUrl="/" />
+
+              
+              <button
+                onClick={() => signOut()}
+                className="flex items-center text-lg hover:text-gray-300"
+              >
+                <LogIn size={18} className="mr-2" />
+                Sign out
+              </button>
             </>
           )}
         </section>
-      </div>
+      </section>
+
+      
+      {isOpen && (
+        <section className="sm:hidden mt-4 flex flex-col items-center gap-4">
+          <Link
+            href={userId ? "/dashboard" : "/sign-in"}
+            className="flex items-center text-lg hover:text-gray-300"
+          >
+            <Briefcase size={18} className="mr-2" />
+            Services
+          </Link>
+          <Link href="/about" className="flex items-center text-lg hover:text-gray-300">
+            <Info size={18} className="mr-2" />
+            About
+          </Link>
+          <Link href="/contact" className="flex items-center text-lg hover:text-gray-300">
+            <Mail size={18} className="mr-2" />
+            Contact
+          </Link>
+          {!userId ? (
+            <>
+              <Link href="/sign-in" className="flex items-center text-lg hover:text-gray-300">
+                <LogIn size={18} className="mr-2" />
+                Sign in
+              </Link>
+              <Link href="/sign-up" className="flex items-center text-lg hover:text-gray-300">
+                <UserPlus size={18} className="mr-2" />
+                Sign up
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/profile" className="flex items-center text-lg hover:text-gray-300">
+                <User size={18} className="mr-2" />
+                Profile
+              </Link>
+
+              <button
+                onClick={() => signOut()}
+                className="flex items-center text-lg hover:text-gray-300"
+              >
+                <LogIn size={18} className="mr-2" />
+                Sign out
+              </button>
+            </>
+          )}
+        </section>
+      )}
     </nav>
   );
 }
