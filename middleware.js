@@ -2,7 +2,7 @@ import { clerkMiddleware } from '@clerk/nextjs/server';
 
 export default clerkMiddleware({
 
-  protectedRoutes: ["/dashboard", "/profile"], 
+  protectedRoutes: ["/dashboard", "/profile", "/pet"], 
 
   publicRoutes: ["/", "/sign-in", "/sign-up", "/about", "/contact"], 
 });
