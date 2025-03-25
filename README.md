@@ -1,5 +1,7 @@
 Pet Lovers' Paradise Website:
+
 Phase 2:
+
 In this phase of the project, the task was to build a responsive navigation component and implement routing to enhance the user experience with smooth and intuitive page transitions. Tailwind CSS was used to quickly create a responsive, mobile-friendly navigation design that adapts well to different screen sizes. The navigation bar provides easy access to key sections of the application, such as the home page, services, about, contacts, sign-in, sign-up, and user profile. A burger menu was implemented for smaller devices to improve usability and ensure that navigation remains clean and accessible on compact screens. To maintain consistency across the application, buttons, cards, and forms were modularized into reusable components, ensuring uniform styling and improving maintainability.
 
 Routing between different pages was implemented efficiently. Route guards are used to secure restricted pages such as the user dashboard, profile, and pet adoption sections. If an unauthorized user attempts to access any of these restricted areas, they are automatically redirected to the login page. This approach ensures that restricted data remain protected, creating a more secure user experience. Dynamic routing was also integrated to display individual pet profiles based on their unique identifiers. For example, routes like /pet/:id allow the application to dynamically render pet details, enabling a more personalized experience for the user.
