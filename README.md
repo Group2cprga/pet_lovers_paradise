@@ -30,6 +30,7 @@ Folder Structure:
         /about
             page.jsx
         /components
+            Animaltar.jsx
             PetfForm.jsx
             Card.jsx
             FormField.jsx
@@ -165,6 +166,7 @@ Next.js (React framework)
 Tailwind CSS (CSS framework)
 Clerk (Authentication SDK)
 JavaScript (Programming language)
+theCatAPI (Third party API)
 
 Functionality:
 1. The platform allows users to sign up with field validation and authentication.
